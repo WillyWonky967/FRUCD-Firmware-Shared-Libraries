@@ -8,7 +8,7 @@
   * @param  init_alpha: The value to initialize alpha to
   * @param  init_val: The value to initialize prev_val to
   */
-void IIR_Init(IIR_t *filter, float init_alpha, uint32_t init_val) {
+void IIR_Init_With_Alpha(IIR_t *filter, float init_alpha, uint32_t init_val) {
     filter->alpha = init_alpha;
     filter->prev_val = init_val;
 }

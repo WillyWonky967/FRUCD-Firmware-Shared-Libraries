@@ -7,6 +7,7 @@
 
 #include "can_manager.h"
 #include "main.h"
+#include "can_unpack.h"
 
 extern CAN_HandleTypeDef hcan;
 
@@ -68,8 +69,10 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan_ptr)
 			can_data.bms_temp = can_rx_data[0];
 			break;
 		case MC_TEMPS_1:
-			can_data.mc_temp_module_a = (can_rx_data[1] << 8);
-			can_data.mc_temp_module_a |= can_rx_data[0];
+		//This tests if I can replace the 16 bit unpacking with the function created in can_unpack 
+			can_data.mc_temp_module_a = can_unpack_u16(can_rx_data[], 0)
+			//can_data.mc_temp_module_a = (can_rx_data[1] << 8);
+			//can_data.mc_temp_module_a |= can_rx_data[0];
 
 			can_data.mc_temp_module_c = (can_rx_data[3] << 8);
 			can_data.mc_temp_module_c |= can_rx_data[2];
